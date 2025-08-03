@@ -1,33 +1,40 @@
-import { useState } from 'react'
+import { useEffect, useState, useRef, createElement } from 'react'
 import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Chatbar } from './Chatbar.jsx'
+import { Chatline, ChatlineData } from './Chatline.jsx'
+import { RoomViewer } from './RoomViewer.jsx'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [chatlines, setChatlines] = useState([]);
+
+  const submit = (content) => {
+    setChatlines(chatlines => [...chatlines, new ChatlineData(content)]);
+  };
+
+  const onjoinroom = (room) => {
+    console.log(`joining room ${room}`)
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div class="main">
+        <div class="header">Chat App</div>
+        <div class="col-container">
+          <div class="row-container">
+            <RoomViewer onjoinroom={onjoinroom}></RoomViewer>
+            <hr/>
+            <div class="expand scrollable-div">
+              <div class="chatlines">
+                {chatlines.map((c, i) => (
+                  <Chatline key={i} index={i} content={c.content}/>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        <Chatbar class="chatbar" onsubmit={submit}></Chatbar>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }

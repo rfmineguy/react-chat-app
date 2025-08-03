@@ -1,42 +1,60 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-height: 100vh;
+  position: relative;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.header {
+  margin: 1rem;
+  border-radius: 5px;
+  background: #888;
+  box-sizing: border-box;
+  margin-right: 1rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.chatlines {
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow: scroll;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-.card {
-  padding: 2em;
+.row-container {
+  gap: 1rem;
+  width: 100%;
+  height: flex-grow;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
 }
 
-.read-the-docs {
-  color: #888;
+.col-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: strech;
+}
+
+.expand {
+  width: 100%;
+  height: 100%;
+}
+
+.scrollable-div {
+}
+
+.chatbar {
+  bottom: 0;
 }
