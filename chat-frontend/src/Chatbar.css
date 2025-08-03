@@ -1,0 +1,6 @@
+.contentbar {
+  box-sizing: border-box;
+  height: 30px;
+  background-color: grey;
+  text-align: left;
+}
