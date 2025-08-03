@@ -1,0 +1,18 @@
+.chatlines > div {
+  display: flex;
+  flex-direction: row;
+  .user {
+    border-right: 3px grey dashed;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .content {
+    padding-left: 1rem;
+  }
+  color: white;
+  border: 3px grey solid;
+
+  * {
+    height: 100%;
+  }
+}
