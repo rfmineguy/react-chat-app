@@ -38,3 +38,22 @@ class ConnectionManager:
 
         if room in self.rooms:
             self.rooms.remove(room)
+
+    async def move_to_room(self, sid, room_name):
+        # Get the room we are trying to join
+        rooms = [room for room in self.rooms if room.name == room_name]
+        if len(rooms) == 0:
+            print(f"[warn] Room ${room_name} not active")
+            return
+
+        # Remove the sid from the previously joined room if present
+        prevrooms = [room for room in self.rooms if sid in room.users]
+        if len(prevrooms) == 1:
+            prevrooms[0].users.remove(sid)
+
+        # Move the sid to the new room
+        room = rooms[0]
+        if sid not in room.users:
+            room.users.append(sid)
+            await self.sio.emit('join-room', {'room_name': room_name, 'sid': sid})
+            await self.sio.emit('update-chat', UpdateChatlines(room.chatlines).tojson(), sid)
