@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './RoomViewer.css'
 
 const RoomEntry = ({name, onjoinroom}) => {
@@ -16,15 +16,16 @@ const RoomEntry = ({name, onjoinroom}) => {
   );
 }
 
-export const RoomViewer = ({onjoinroom}) => {
+export const RoomViewer = ({onjoinroom, rooms, joinedRoom}) => {
   return (
     <>
       <div class="col-container">
-        <RoomEntry name="hello"     onjoinroom={onjoinroom}/>
-        <RoomEntry name="hello 538" onjoinroom={onjoinroom}/>
-        <RoomEntry name="hello"     onjoinroom={onjoinroom}/>
-        <RoomEntry name="hello"     onjoinroom={onjoinroom}/>
-        <RoomEntry name="hello"     onjoinroom={onjoinroom}/>
+        <p>{joinedRoom}</p>
+      {
+        rooms.map((r, i) => (
+          <RoomEntry key={i} name={r.name} onjoinroom={onjoinroom}/>
+        ))
+      }
       </div>
     </>
   );
