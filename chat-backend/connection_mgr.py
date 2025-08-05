@@ -20,3 +20,12 @@ class ConnectionManager:
             self.connections.remove(sid)
         else:
             print(f"{sid} not present")
+
+    async def create_room(self, sid: str, room: str):
+        a = [room_ for room_ in self.rooms if room_.name == room]
+        if len(a) != 0:
+            print(f"Room with name '{room}' already exists")
+            return
+
+        if room not in self.rooms:
+            self.rooms.append(Room(room))
