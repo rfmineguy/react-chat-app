@@ -28,3 +28,11 @@ class UpdateRoomsMessage():
         json_rooms = [room for room in self.rooms]
         print(json_rooms)
         return {"rooms": json_rooms}
+
+
+@dataclass
+class UpdateChatlines():
+    chatlines: [str]
+
+    def tojson(self):
+        return {"chatlines": self.chatlines}
