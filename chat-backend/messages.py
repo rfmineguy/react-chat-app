@@ -18,3 +18,13 @@ class MoveToRoom():
 
     def tojson(self):
         return {"roomName": self.roomName, "sid": self.sid}
+
+
+@dataclass
+class UpdateRoomsMessage():
+    rooms: [Room]
+
+    def tojson(self):
+        json_rooms = [room for room in self.rooms]
+        print(json_rooms)
+        return {"rooms": json_rooms}
