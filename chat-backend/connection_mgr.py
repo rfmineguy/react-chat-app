@@ -39,6 +39,12 @@ class ConnectionManager:
         if room in self.rooms:
             self.rooms.remove(room)
 
+    def show_rooms(self):
+        for room in self.rooms:
+            print(f"Room: ${room.name}")
+            for user in room.users:
+                print(f"  User: ${user}")
+
     async def move_to_room(self, sid, room_name):
         # Get the room we are trying to join
         rooms = [room for room in self.rooms if room.name == room_name]
