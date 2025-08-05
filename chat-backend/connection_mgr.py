@@ -57,3 +57,8 @@ class ConnectionManager:
             room.users.append(sid)
             await self.sio.emit('join-room', {'room_name': room_name, 'sid': sid})
             await self.sio.emit('update-chat', UpdateChatlines(room.chatlines).tojson(), sid)
+
+    async def broadcast_rooms(self):
+        for conn in self.connections:
+            json_rooms = [json.dumps(room.tojson()) for room in self.rooms]
+            await self.sio.emit('send-rooms', UpdateRoomsMessage(json_rooms).tojson(), conn)
