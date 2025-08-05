@@ -81,12 +81,15 @@ function App() {
         <div class="header">Chat App</div>
         <div class="col-container">
           <div class="row-container">
-            <RoomViewer onjoinroom={onjoinroom}></RoomViewer>
+            <div class="col-container">
+              <RoomViewer rooms={rooms} onjoinroom={onjoinroom} joinedRoom={joinedRoom}></RoomViewer>
+              <NewRoom oncreateroom={oncreateroom}></NewRoom>
+            </div>
             <hr/>
             <div class="expand scrollable-div">
               <div class="chatlines">
                 {chatlines.map((c, i) => (
-                  <Chatline key={i} index={i} content={c.content}/>
+                  <Chatline key={i} index={i} content={c}/>
                 ))}
               </div>
             </div>
