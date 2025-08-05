@@ -9,3 +9,12 @@ class SendMessage():
 
     def tojson(self):
         return {"message": self.message}
+
+
+@dataclass
+class MoveToRoom():
+    roomName: str
+    sid: str
+
+    def tojson(self):
+        return {"roomName": self.roomName, "sid": self.sid}
