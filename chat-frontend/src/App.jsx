@@ -5,6 +5,22 @@ import { Chatline, ChatlineData } from './Chatline.jsx'
 import { RoomViewer } from './RoomViewer.jsx'
 import './App.css'
 
+const NewRoom = ({oncreateroom}) => {
+  const inputref = useRef(null);
+  const buttonref = useRef(null);
+  useEffect(() => {
+    buttonref.current.onclick = () => oncreateroom(inputref.current.value);
+  }, []);
+  return (
+    <>
+      <div class="room-entry">
+        <input ref={inputref}></input>
+        <button ref={buttonref}>Create</button>
+      </div>
+    </>
+  );
+};
+
 function App() {
   const [chatlines, setChatlines] = useState([]);
 
