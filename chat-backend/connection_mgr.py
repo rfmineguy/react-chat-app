@@ -29,3 +29,12 @@ class ConnectionManager:
 
         if room not in self.rooms:
             self.rooms.append(Room(room))
+
+    async def delete_room(self, sid: str, room: str):
+        a = [room_ for room_ in self.rooms if room_.name == room]
+        if len(a) != 0:
+            print(f"Room with name '{room}' doesn't exist, can't delete")
+            return
+
+        if room in self.rooms:
+            self.rooms.remove(room)
